@@ -1,19 +1,10 @@
-import axios from 'axios';
-import {endpoints} from '../constants/apiEndpoints.constants';
 import {ArticlesType} from '../types';
 
-export const getNews = async (): Promise<ArticlesType> => {
-  // const {
-  //   data: {articles},
-  // }: {data: {articles: ArticlesType}} = await axios.get(endpoints.firstNewsApi);
-  // const {
-  //   data: {articles: SecondArticles},
-  // }: {data: {articles: ArticlesType}} = await axios.get(
-  //   endpoints.secondNewsApi,
-  // );
-  return [
-    /* ...SecondArticles, ...articles */
-  ];
+export const removeDublicates = (data: ArticlesType[]) => {
+  const Urls = [...new Set(data?.map(item => item.url))];
+  const notRedundency = Urls.map(url => data?.find(news => news.url === url));
+
+  return notRedundency;
 };
 export const formatDate = (value: string | Date) => {
   let date = new Date(value);
@@ -21,4 +12,20 @@ export const formatDate = (value: string | Date) => {
   const month = date.toLocaleString('default', {month: 'short'});
   const year = date.toLocaleString('default', {year: 'numeric'});
   return `${month} ${day}, ${year}`;
+};
+
+export const searchSuggestions = (
+  articles: ArticlesType[],
+  customerQuery: string,
+) => {
+  // Write your code here
+  if (!customerQuery || customerQuery.length < 2) {
+    return articles;
+  } else {
+    const firstFilteration = articles.filter(article =>
+      article.title.toLowerCase().includes(customerQuery.toLowerCase()),
+    );
+
+    return firstFilteration;
+  }
 };
