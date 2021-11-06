@@ -1,3 +1,4 @@
+import {calcFont} from '@constants/style/sizes';
 import {
   BottomTabNavigationOptions,
   createBottomTabNavigator,
@@ -11,13 +12,17 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
 
-interface Props {}
+interface tabBarOPtionsProps {
+  label: string;
+}
 
 const tabBarOPtions = ({
   label,
 }: tabBarOPtionsProps): BottomTabNavigationOptions => {
   return {
-    tabBarLabel: ({focused, color}) => <Text style={[{color}]}>{label}</Text>,
+    tabBarLabel: ({color}) => (
+      <Text style={[{color, fontSize: calcFont(12)}]}>{label}</Text>
+    ),
   };
 };
 const TabNavigation = () => {
