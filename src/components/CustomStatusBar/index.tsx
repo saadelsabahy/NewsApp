@@ -1,4 +1,5 @@
-import React from 'react';
+import {ThemeContext} from '@contexts/ThemeProvider';
+import React, {useContext} from 'react';
 import {StatusBar} from 'react-native';
 import {useTheme} from 'react-native-paper';
 
@@ -6,7 +7,8 @@ const CustomStatusBar = () => {
   const {
     colors: {background},
   } = useTheme();
-  const statusBarStyle = false ? 'dark-content' : 'light-content';
+  const {theme} = useContext(ThemeContext);
+  const statusBarStyle = theme === 'light' ? 'dark-content' : 'light-content';
 
   return <StatusBar backgroundColor={background} barStyle={statusBarStyle} />;
 };
