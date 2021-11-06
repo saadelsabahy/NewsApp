@@ -6,6 +6,5 @@ export interface ArticlesType {
   urlToImage: string;
   publishedAt: Date;
 }
-[];
 
 export type ILanguagesName = string | 'ar' | 'en';

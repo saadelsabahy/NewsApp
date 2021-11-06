@@ -4,7 +4,7 @@ import {calcFont} from '@constants/style/sizes';
 import {formatDate} from '@utils';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
-import {ScrollView, StyleSheet} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 
 interface Props {
   navigation: any;
@@ -13,32 +13,24 @@ interface Props {
 
 const Details = ({navigation, route}: Props) => {
   const {t} = useTranslation();
-  const {title, author, publishedAt, description, url, urlToImage} =
-    route.params;
+  const {title, author, publishedAt, description, urlToImage} = route.params;
+  console.log({title, author, publishedAt, description});
 
   return (
-    <ScrollView style={CommonStyles.screensContainer}>
+    <View style={CommonStyles.screensContainer}>
       <CustomHeader title={t('detailsScreen:newsDetails')} />
-      <DetailsCard
-        imageSource={urlToImage}
-        firstParagraph={description}
-        secondParagraph={''}
-        date={formatDate(publishedAt)}
-        title={title}
-        author={author}
-      />
-    </ScrollView>
+      <ScrollView style={CommonStyles.screensContainer}>
+        <DetailsCard
+          imageSource={urlToImage}
+          firstParagraph={description}
+          secondParagraph={''}
+          date={formatDate(publishedAt)}
+          title={title}
+          author={author}
+        />
+      </ScrollView>
+    </View>
   );
 };
 
 export {Details};
-
-const styles = StyleSheet.create({
-  contentContainer: {
-    flex: 1,
-  },
-  button: {
-    borderRadius: 0,
-    margin: calcFont(10),
-  },
-});

@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
   },
   title: {
     marginEnd: calcFont(10),
+    letterSpacing: 0,
   },
 });
 

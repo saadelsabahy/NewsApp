@@ -1,10 +1,10 @@
 import {ArticlesType} from '../types';
 
-export const removeDublicates = (data: ArticlesType[]) => {
+export const removeDuplicate = (data: ArticlesType[]): ArticlesType[] => {
   const Urls = [...new Set(data?.map(item => item.url))];
-  const notRedundency = Urls.map(url => data?.find(news => news.url === url));
+  const notRedundancy = Urls.map(url => data?.find(news => news.url === url)!);
 
-  return notRedundency;
+  return notRedundancy;
 };
 export const formatDate = (value: string | Date) => {
   let date = new Date(value);
@@ -15,10 +15,12 @@ export const formatDate = (value: string | Date) => {
 };
 
 export const searchSuggestions = (
-  articles: ArticlesType[],
+  articles: ArticlesType[] | undefined,
   customerQuery: string,
 ) => {
-  // Write your code here
+  if (!articles) {
+    return [];
+  }
   if (!customerQuery || customerQuery.length < 2) {
     return articles;
   } else {

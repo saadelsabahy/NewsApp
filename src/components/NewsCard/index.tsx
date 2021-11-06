@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     borderRadius: calcFont(7),
     overflow: 'hidden',
   },
-  title: {marginTop: 15},
+  title: {marginTop: calcFont(15), letterSpacing: 0},
 });
 
 export {NewsCard};

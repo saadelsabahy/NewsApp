@@ -29,26 +29,19 @@ const DetailsCard = ({
       />
       <Card.Content>
         <View style={styles.rowSubtitles}>
-          <Text style={styles.subTitles}>{`${author.replace(
-            /[^a-zA-Z ]/g,
-            '',
-          )}`}</Text>
+          <Text style={styles.subTitles}>{`${author}`}</Text>
           <Text style={styles.subTitles}>{date}</Text>
         </View>
       </Card.Content>
       <Card.Title
         titleNumberOfLines={2}
-        title={title.replace(/[^a-zA-Z ]/g, '')}
+        title={title}
         titleStyle={CommonStyles.title}
       />
 
       <Card.Content>
-        <Paragraph style={styles.paragraph}>
-          {firstParagraph.replace(/[^a-zA-Z ]/g, '')}
-        </Paragraph>
-        <Paragraph style={styles.paragraph}>
-          {secondParagraph.replace(/[^a-zA-Z ]/g, ' ')}
-        </Paragraph>
+        <Paragraph style={styles.paragraph}>{firstParagraph}</Paragraph>
+        <Paragraph style={styles.paragraph}>{secondParagraph}</Paragraph>
       </Card.Content>
     </View>
   );
@@ -65,6 +58,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    marginVertical: Spaces.medium,
   },
   date: {
     textTransform: 'capitalize',
@@ -76,5 +70,9 @@ const styles = StyleSheet.create({
     marginTop: calcFont(5),
     color: COLORS.GRAY,
   },
-  paragraph: {marginVertical: calcFont(10)},
+  paragraph: {
+    marginVertical: calcFont(10),
+    letterSpacing: 0,
+    lineHeight: calcFont(25),
+  },
 });

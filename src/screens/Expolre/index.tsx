@@ -1,34 +1,98 @@
 import {CustomHeader, EmptyList, LoaderAndRetry, NewsCard} from '@components';
+import {endpoints} from '@constants/apiEndpoints.constants';
 import {CommonStyles, Spaces} from '@constants/style';
 import {calcFont} from '@constants/style/sizes';
-import {formatDate, getNews} from '@utils';
-import React from 'react';
+import {useScrollToTop} from '@react-navigation/native';
+import {ArticlesType} from '@types';
+import {formatDate, removeDuplicate, searchSuggestions} from '@utils';
+import axios from 'axios';
+import React, {useCallback, useRef, useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {FlatList, RefreshControl, StyleSheet, View} from 'react-native';
-import {Searchbar, useTheme} from 'react-native-paper';
-import {useQuery} from 'react-query';
-
+import {
+  FlatList,
+  I18nManager,
+  RefreshControl,
+  StyleSheet,
+  View,
+} from 'react-native';
+import {ActivityIndicator, Searchbar, useTheme} from 'react-native-paper';
+import {useInfiniteQuery} from 'react-query';
 interface Props {
   navigation: any;
 }
 
 const Explore = ({navigation}: Props) => {
+  const scrollRef = useRef(null);
+  useScrollToTop(scrollRef);
   const {
     colors: {primary},
   } = useTheme();
   const {t} = useTranslation();
-  const onCardPressed = params => {
+  const [Query, setQuery] = useState<string>('');
+  const [currentPage, setcurrentPage] = React.useState(0);
+  const onCardPressed = (params: Exclude<ArticlesType, 'url'>) => {
     navigation.navigate('Details', {...params});
   };
-  const {data, isLoading, isError, refetch, isFetching} = useQuery(
-    'getNews',
-    getNews,
-  );
-
+  const getNews = async ({
+    pageParam,
+  }: {
+    pageParam: number;
+  }): Promise<ArticlesType[]> => {
+    const {
+      data: {articles},
+    }: {data: {articles: ArticlesType[]}} = await axios.get(
+      endpoints.firstNewsApi,
+      {
+        params: {
+          country: I18nManager.isRTL ? 'ae' : 'us',
+          apiKey: 'e0b694b4ce854bd49930640bbd97b3d3',
+          pageSize: 10,
+          page: pageParam,
+        },
+      },
+    );
+    setcurrentPage(pageParam + 1);
+    return articles;
+  };
+  const {
+    data,
+    isLoading,
+    isError,
+    refetch,
+    isFetching,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery('getNews', ({pageParam = 0}) => getNews({pageParam}), {
+    getNextPageParam: lastPage => {
+      if (lastPage?.length) {
+        return currentPage;
+      }
+      return undefined;
+    },
+    // getPreviousPageParam: (firstPage) => firstPage.prevCursor,
+    staleTime: 100,
+    cacheTime: 100,
+    select: data => ({...data, pages: data.pages.flatMap(page => page)}),
+  });
+  const onEndReached = () => {
+    if (hasNextPage) {
+      fetchNextPage();
+    }
+  };
+  const renderLoader = useCallback(() => {
+    return hasNextPage ? (
+      <ActivityIndicator animating={isFetchingNextPage} />
+    ) : null;
+  }, [isFetchingNextPage, hasNextPage]);
   return (
     <View style={[CommonStyles.screensContainer]}>
       <CustomHeader title={t('tabs:news')} hideBack />
-      <Searchbar style={styles.searchBar} />
+      <Searchbar
+        style={styles.searchBar}
+        value={Query}
+        onChangeText={(text: string) => setQuery(text)}
+      />
       <View style={CommonStyles.screensContainer}>
         {(isLoading || isError) && (
           <LoaderAndRetry
@@ -40,7 +104,8 @@ const Explore = ({navigation}: Props) => {
 
         {data && (
           <FlatList
-            data={data}
+            ref={scrollRef}
+            data={searchSuggestions(removeDuplicate(data.pages), Query)}
             keyExtractor={({url}) => url}
             renderItem={({
               item: {title, author, publishedAt, description, url, urlToImage},
@@ -57,7 +122,7 @@ const Explore = ({navigation}: Props) => {
                       urlToImage,
                     })
                   }
-                  title={title.replace(/[^a-zA-Z ]/g, '')}
+                  title={title.replace('/[^أ-يA-Za-z !@#$%^&*()]/ui', '')}
                   author={author}
                   date={formatDate(publishedAt)}
                   imageSource={urlToImage}
@@ -75,6 +140,9 @@ const Explore = ({navigation}: Props) => {
             }
             contentContainerStyle={styles.flatlistContentContainer}
             ListEmptyComponent={<EmptyList />}
+            onEndReached={onEndReached}
+            onEndReachedThreshold={0.5}
+            ListFooterComponent={renderLoader}
           />
         )}
       </View>
