@@ -7,6 +7,7 @@ import {useTheme} from '@react-navigation/native';
 import {Explore, SettingsScreen} from '@screens';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
+import {StyleSheet} from 'react-native';
 import {Text} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -21,7 +22,7 @@ const tabBarOPtions = ({
 }: tabBarOPtionsProps): BottomTabNavigationOptions => {
   return {
     tabBarLabel: ({color}) => (
-      <Text style={[{color, fontSize: calcFont(12)}]}>{label}</Text>
+      <Text style={[styles.tabLabel, {color}]}>{label}</Text>
     ),
   };
 };
@@ -56,5 +57,11 @@ const TabNavigation = () => {
     </Tab.Navigator>
   );
 };
+const styles = StyleSheet.create({
+  tabLabel: {
+    fontSize: calcFont(12),
+    textTransform: 'capitalize',
+  },
+});
 
 export default TabNavigation;
