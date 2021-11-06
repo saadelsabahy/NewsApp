@@ -1,0 +1,19 @@
+{
+  "tabs": {
+    "news": "الأخبار",
+    "settings": "الإعدادات"
+  },
+  "settings": {
+    "arabic": "العربيه",
+    "darkTheme": "الوضع الليلي"
+  },
+  "detailsScreen": {
+    "newsDetails": "تفاصيل الخبر"
+  },
+  "general": {
+    "noData": "لايوجد أخبار",
+    "retry": "حدث خطأ ما برجاء المحاوله مره اخري",
+    "noInternet": "...لايوجد إتصال بالإنترنت",
+    "loading": "جاري التحميل.."
+  }
+}

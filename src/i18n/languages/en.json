@@ -1,0 +1,19 @@
+{
+  "tabs": {
+    "news": "news",
+    "settings": "settings"
+  },
+  "settings": {
+    "arabic": "arabic",
+    "darkTheme": "dark theme"
+  },
+  "detailsScreen": {
+    "newsDetails": "news details"
+  },
+  "general": {
+    "noData": "no news founded",
+    "retry": "something went wrong please try again",
+    "noInternet": "no connection... ",
+    "loading": "loading.."
+  }
+}

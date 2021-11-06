@@ -1,4 +1,5 @@
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {StyleSheet, View} from 'react-native';
 import {ActivityIndicator, IconButton, Text} from 'react-native-paper/';
 import {calcFont} from '../../constants/style/sizes';
@@ -17,12 +18,16 @@ const LoaderAndRetry = ({
   loadingText,
   errorText,
 }: Props) => {
+  const {t} = useTranslation();
   return (
     <View style={styles.container}>
       {loading && (
         <>
           <ActivityIndicator size="large" />
-          <Text children={loadingText || 'loading..'} style={styles.text} />
+          <Text
+            children={loadingText || t('general:loading')}
+            style={styles.text}
+          />
         </>
       )}
       {error && (
@@ -33,7 +38,7 @@ const LoaderAndRetry = ({
             size={calcFont(25)}
           />
           <Text
-            children={errorText || 'something went wrong please  try again'}
+            children={errorText || t('general:retry')}
             style={styles.text}
           />
         </>

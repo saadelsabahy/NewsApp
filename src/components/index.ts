@@ -1,3 +1,4 @@
+export * from './CustomHeader';
 export * from './CustomStatusBar';
 export * from './DetailsCard';
 export * from './ListEmptyComponent';

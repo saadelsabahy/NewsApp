@@ -74,7 +74,7 @@ const Explore = ({navigation}: Props) => {
               />
             }
             contentContainerStyle={styles.flatlistContentContainer}
-            ListEmptyComponent={<EmptyList emptyText={'no data..'} />}
+            ListEmptyComponent={<EmptyList />}
           />
         )}
       </View>

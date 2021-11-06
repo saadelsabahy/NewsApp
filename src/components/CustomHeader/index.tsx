@@ -1,13 +1,9 @@
+import {COLORS} from '@constants/style';
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {I18nManager, StyleSheet} from 'react-native';
 import {Appbar, useTheme} from 'react-native-paper';
-import {
-  default as Icon,
-  default as Icon,
-} from 'react-native-vector-icons/MaterialCommunityIcons';
-import {COLORS} from '../../constants/style';
-import {calcFont, SCREEN_WIDTH} from '../../constants/style/sizes';
+import {calcFont} from '../../constants/style/sizes';
 interface Props {
   hideBack?: boolean;
 
@@ -18,11 +14,11 @@ const CustomHeader = ({hideBack, title}: Props) => {
   const navigation = useNavigation();
 
   const {
-    colors: {primary, text},
+    colors: {text, background},
   } = useTheme();
 
   return (
-    <Appbar.Header style={[styles.APPBAR]}>
+    <Appbar.Header style={[styles.APPBAR, {backgroundColor: background}]}>
       {!hideBack ? (
         <Appbar.Action
           icon={I18nManager.isRTL ? 'chevron-right' : 'chevron-left'}
@@ -47,46 +43,18 @@ export {CustomHeader};
 
 const styles = StyleSheet.create({
   APPBAR: {
-    //backgroundColor: COLORS.WHITE,
-    width: SCREEN_WIDTH,
     elevation: 0,
-    alignSelf: 'center',
-    borderColor: COLORS.CART_ITEM_BORDER,
   },
   title: {
     fontSize: calcFont(16),
     fontWeight: '600',
     fontStyle: 'normal',
     //letterSpacing: -0.28,
-    color: COLORS.HEADER_TEXT,
     textTransform: 'capitalize',
   },
   appbarAction: {
     marginStart: 0,
     // backgroundColor: 'yellow',
     marginEnd: 0,
-  },
-  appbarContent: {
-    alignItems: 'center',
-    marginStart: 0,
-    // backgroundColor: 'red',
-    marginEnd: 0,
-    marginLeft: 0,
-    marginRight: 0,
-  },
-  endActionText: {
-    //color: COLORS.MAINCOLOR,
-    textTransform: 'capitalize',
-    textAlign: 'center',
-    fontSize: calcFont(14),
-    letterSpacing: calcFont(-0.28),
-    marginHorizontal: 0,
-    marginVertical: 0,
-  },
-  textButton: {
-    justifyContent: 'center',
-    width: 'auto',
-    marginEnd: calcFont(5),
-    //borderRadius: 0,
   },
 });

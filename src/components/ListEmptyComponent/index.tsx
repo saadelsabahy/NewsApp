@@ -1,21 +1,23 @@
 import Spaces from '@constants/style/spaces';
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {StyleSheet, View} from 'react-native';
 import {Text, useTheme} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 
 interface Props {
   iconSize?: number;
-  emptyText: string;
+  emptyText?: string;
 }
 const EmptyList = ({iconSize, emptyText}: Props) => {
   const {
     colors: {primary},
   } = useTheme();
+  const {t} = useTranslation();
   return (
     <View style={styles.container}>
       <Icon name={'exclamation'} size={iconSize || 40} color={primary} />
-      <Text children={emptyText} style={styles.text} />
+      <Text children={emptyText || t('general:noData')} style={styles.text} />
     </View>
   );
 };
