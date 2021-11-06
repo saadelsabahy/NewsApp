@@ -10,26 +10,13 @@ interface Props {}
 
 const AppStack = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen
         name="Tabs"
         component={TabNavigation}
         options={{headerShown: false}}
       />
-      <Stack.Screen
-        name="Details"
-        component={Details}
-        options={{
-          headerLeft: props => (
-            <IconButton
-              icon={I18nManager.isRTL ? 'chevron-right' : 'chevron-left'}
-              size={calcFont(25)}
-              style={{padding: 0}}
-              {...props}
-            />
-          ),
-        }}
-      />
+      <Stack.Screen name="Details" component={Details} />
     </Stack.Navigator>
   );
 };

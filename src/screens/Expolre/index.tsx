@@ -1,8 +1,9 @@
-import {EmptyList, LoaderAndRetry, NewsCard} from '@components';
+import {CustomHeader, EmptyList, LoaderAndRetry, NewsCard} from '@components';
 import {CommonStyles, Spaces} from '@constants/style';
 import {calcFont} from '@constants/style/sizes';
 import {formatDate, getNews} from '@utils';
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {FlatList, RefreshControl, StyleSheet, View} from 'react-native';
 import {Searchbar, useTheme} from 'react-native-paper';
 import {useQuery} from 'react-query';
@@ -15,6 +16,7 @@ const Explore = ({navigation}: Props) => {
   const {
     colors: {primary},
   } = useTheme();
+  const {t} = useTranslation();
   const onCardPressed = params => {
     navigation.navigate('Details', {...params});
   };
@@ -24,7 +26,8 @@ const Explore = ({navigation}: Props) => {
   );
 
   return (
-    <View style={[CommonStyles.screensContainer, {backgroundColor: undefined}]}>
+    <View style={[CommonStyles.screensContainer]}>
+      <CustomHeader title={t('tabs:news')} hideBack />
       <Searchbar style={styles.searchBar} />
       <View style={CommonStyles.screensContainer}>
         {(isLoading || isError) && (
