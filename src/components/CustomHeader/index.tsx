@@ -19,15 +19,12 @@ const CustomHeader = ({hideBack, title}: Props) => {
 
   return (
     <Appbar.Header style={[styles.APPBAR, {backgroundColor: background}]}>
-      {!hideBack ? (
+      {!hideBack && (
         <Appbar.Action
           icon={I18nManager.isRTL ? 'chevron-right' : 'chevron-left'}
-          size={calcFont(25)}
+          //size={calcFont(25)}
           onPress={() => navigation.goBack()}
-          style={styles.appbarAction}
         />
-      ) : (
-        <Appbar.Action style={styles.appbarAction} />
       )}
 
       <Appbar.Content
@@ -35,6 +32,7 @@ const CustomHeader = ({hideBack, title}: Props) => {
         style={styles.appbarContent}
         titleStyle={[styles.title, {color: text}]}
       />
+      {!hideBack && <Appbar.Action />}
     </Appbar.Header>
   );
 };
@@ -51,6 +49,9 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     //letterSpacing: -0.28,
     textTransform: 'capitalize',
+  },
+  appbarContent: {
+    alignItems: 'center',
   },
   appbarAction: {
     marginStart: 0,

@@ -3,12 +3,11 @@ import {COLORS, FONTS} from '@constants/style';
 import {NetworkContext} from '@contexts';
 import {ThemeContext} from '@contexts/ThemeProvider';
 import {NavigationContainer} from '@react-navigation/native';
-import React, {useContext} from 'react';
-import {useTranslation} from 'react-i18next';
-import {configureFonts, Text, ThemeProvider} from 'react-native-paper';
+import React, {useContext, useEffect} from 'react';
+import RNBootSplash from 'react-native-bootsplash';
+import {configureFonts, ThemeProvider} from 'react-native-paper';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import AppStack from './App.stack';
-
 interface Props {}
 const fonts = configureFonts({
   ios: FONTS,
@@ -35,10 +34,14 @@ const linking = {
   config,
 };
 const AppNavigation = () => {
-  const {t} = useTranslation();
   const {isOnline} = useContext(NetworkContext);
-  const {theme} = useContext(ThemeContext);
+  const {theme, isLoadingTheme} = useContext(ThemeContext);
   const APP_THEME = theme === 'light' ? COLORS.defaultTheme : COLORS.darkTheme;
+
+  useEffect(() => {
+    !isLoadingTheme && RNBootSplash.hide({fade: true});
+  }, [isLoadingTheme]);
+
   return (
     <ThemeProvider theme={{...APP_THEME, fonts}}>
       {!isOnline && <NoInternet />}

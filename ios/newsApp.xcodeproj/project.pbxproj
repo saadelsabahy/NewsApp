@@ -12,6 +12,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		47DE124E303F453EB40E18AD /* Cairo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 857EDB75DCAA4E358354BF56 /* Cairo-Regular.ttf */; };
+		501A6FB527383EE800CC0773 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 501A6FB427383EE800CC0773 /* BootSplash.storyboard */; };
 		5F95C764C9A84BF4833C258E /* Cairo-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 837614507B474F318949B0D7 /* Cairo-Light.ttf */; };
 		6172F2D35A4C3AA820D92908 /* libPods-newsApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6423831EA8574132BED9D8CC /* libPods-newsApp.a */; };
 		7EF68E3733C33B6898317E18 /* libPods-newsApp-newsAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFE59519B596E51CEFDCCC0 /* libPods-newsApp-newsAppTests.a */; };
@@ -46,6 +47,7 @@
 		1D0AE47A65C8663E3B452821 /* Pods-newsApp-newsAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newsApp-newsAppTests.release.xcconfig"; path = "Target Support Files/Pods-newsApp-newsAppTests/Pods-newsApp-newsAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		3BD802B121544ACCB53E91C3 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		442E688A332D4969A70D858A /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
+		501A6FB427383EE800CC0773 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BootSplash.storyboard; sourceTree = "<group>"; };
 		5F3E48D456734EFFB2D4DDD2 /* Cairo-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Cairo-ExtraLight.ttf"; path = "../src/assets/fonts/Cairo-ExtraLight.ttf"; sourceTree = "<group>"; };
 		6193D64221944C048A716835 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		62249695062C4C4183FC8350 /* Cairo-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Cairo-Black.ttf"; path = "../src/assets/fonts/Cairo-Black.ttf"; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 		13B07FAE1A68108700A75B9A /* newsApp */ = {
 			isa = PBXGroup;
 			children = (
+				501A6FB427383EE800CC0773 /* BootSplash.storyboard */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -303,6 +306,7 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				E2EE84768F3E4AF0943C7450 /* Cairo-Black.ttf in Resources */,
+				501A6FB527383EE800CC0773 /* BootSplash.storyboard in Resources */,
 				82D66DE879EF41CA9458174B /* Cairo-Bold.ttf in Resources */,
 				FD79C1A17DDD46F8B560CB89 /* Cairo-ExtraLight.ttf in Resources */,
 				5F95C764C9A84BF4833C258E /* Cairo-Light.ttf in Resources */,
