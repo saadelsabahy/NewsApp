@@ -6,7 +6,9 @@ import {onlineManager} from 'react-query';
 interface ContextTypes {
   isOnline: boolean;
 }
-export const NetworkContext = React.createContext<ContextTypes>({});
+export const NetworkContext = React.createContext<ContextTypes>(
+  {} as ContextTypes,
+);
 
 interface Props {
   children: ReactNode;

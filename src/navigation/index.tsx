@@ -24,7 +24,7 @@ const config = {
     Details: {
       path: 'details/:id',
       parse: {
-        id: id => `${id}`,
+        id: (newsId: string) => newsId,
       },
     },
   },
