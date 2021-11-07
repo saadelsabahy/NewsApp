@@ -92,6 +92,7 @@ const Explore = ({navigation}: Props) => {
         style={styles.searchBar}
         value={Query}
         onChangeText={(text: string) => setQuery(text)}
+        placeholder={t('general:filterNews')}
       />
       <View style={CommonStyles.screensContainer}>
         {(isLoading || isError) && (
