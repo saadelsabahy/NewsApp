@@ -37,6 +37,7 @@ const TabNavigation = () => {
         headerStyle: {backgroundColor: background},
         tabBarStyle: {backgroundColor: background},
         headerShown: false,
+        tabBarHideOnKeyboard: true,
       }}>
       <Tab.Screen
         name="News"
